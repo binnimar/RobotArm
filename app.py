@@ -6,10 +6,10 @@ app = Flask(__name__)
 mysql = MySQL()
  
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'fooyonghan'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'kakinjeB3kk13?'
-app.config['MYSQL_DATABASE_DB'] = 'RobotArm'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'admin4hqzqV5'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'GPIxJzp_II6q'
+app.config['MYSQL_DATABASE_DB'] = 'robotarm'
+app.config['MYSQL_DATABASE_HOST'] = '127.2.19.2'
 mysql.init_app(app)
 
 @app.route('/')
