@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Robotic Arm Game - TUTORIAL 0</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <script src="../static/js/simulation.js"></script>
+    <script src="../static/js/tutorial0.js"></script>
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <link href="../static/css/GUI.css" rel="stylesheet">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/addOperations.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script>
+        $(function() {
+            $( ".sortable" ).sortable();
+            $( ".sortable" ).disableSelection();
+            $( "#subsortable" ).sortable();
+            $( "#subsortable" ).disableSelection();
+        });
+    </script>
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Robotic Arm Game</h3>
+        </div>
+
+        
+        <div class="gui-grid-container">
+
+            <div id="test" class="left-wrapper">
+
+                <div class="simulatior">
+                    <canvas id="simCanvas" width="401" height="201"></canvas>
+                    <!-- <script>init(getOperationList());</script> -->
+                </div>
+
+            </div>
+
+            <div class="right-wrapper">
+                <div class="gui-operations-grid">
+                    <ul id="mainsortable" class="sortable">
+
+                    </ul>
+                </div>
+            
+        <script>initTut();</script>    
+            <div class="gui-button-wrapper">
+                <div class="gui-operations">
+                    <div id="first-operation-row">
+                            <input id="btn-up" type="button" value="up" disabled/>
+                            <input id="btn-down" type="button" value="down" disabled/>
+                            <input id="btn-left" type="button" value="left" disabled/>
+                            <input id="btn-right" type="button" value="right" disabled/>
+                            <input id="btn-grab" type="button" value="grab" disabled/>
+                            <input id="btn-release" type="button" value="release" disabled/>
+                            <input id="btn-function" type="button" value="function" disabled/>
+                            <input id="btn-loop" type="button" value="loop" disabled/>
+                            <input id="btn-endloop" type="button" value="endloop" disabled/>
+                    </div>
+                    <div id="second-operation-row">
+                        <input id="btn-tut" type="button" value="simulate" onclick="executeTut(getOperationList());" disabled/>
+			<input id="btn-clear" type="button" value="clear" disabled/>
+                        <input id="btn-check" type="button" value="save&reset" onclick="check_sequence(getOperationList());" disabled>
+                    </div>
+                </div>
+                    <div id="trash">
+                        DELETE
+                    </div>
+
+            </div>
+	</div>
+        </div>
+	<br/>
+
+<div class="tutorial-box">
+		<label for="tutorial0" id="tut0Text"></label><br />
+<script>document.getElementById('tut0Text').innerHTML = lblTut0;</script>
+	<input type="button" id="btn-next" onclick="next_text()" value="Next" />
+	</div>
+	
+ 
+    </div>
+</body>
+ 
+</html>

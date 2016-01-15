@@ -1,0 +1,223 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.test {
+  position: relative;
+  float: right;
+}
+
+.ui-state-default {
+  color: green;
+}
+
+.sortable { 
+  list-style-type: none; 
+  margin: 0 0 0 20px; 
+  padding: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+.sortable li { 
+  margin: 3px 3px 3px 0px; 
+  padding: 1px; 
+  float: left; 
+  width: 50px; 
+  height: 50px; 
+  font-size: 1em; 
+  text-align: center;
+  color: red;
+}
+
+#subsortable { 
+  list-style-type: none; 
+  margin: 0 0 0 20px; 
+  padding: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+#subsortable li { 
+  margin: 3px 3px 3px 0px; 
+  padding: 1px; 
+  float: left; 
+  width: 50px; 
+  height: 50px; 
+  font-size: 1em; 
+  text-align: center;
+  color: red;
+}
+
+.gui-grid-container {
+  background-color: blue;
+  height: 400px;
+  width: 100%;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: row; /* Safari */
+  flex-direction:         row;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.left-wrapper {
+  background-color: green;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; 
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction:         column;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.right-wrapper {
+  background-color: green;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; 
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction:         column;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.tutorial-box {
+  background-color: yellow;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; 
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction:         column;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.gui-simulator {
+  background-color: purple;
+  color: white;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; 
+}
+
+.gui-operations-grid {
+  background-color: orange;
+  -webkit-flex: 3 0 0; 
+  flex: 3 0 0; 
+}
+
+.gui-function1 {
+   background-color: red;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0;
+}
+
+.gui-function2 {
+   background-color: yellow;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0;
+}
+
+.gui-loop-container {
+   background-color: blue;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0;
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: row; /* Safari */
+  flex-direction:         row;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.gui-loop {
+  background-color: black;
+  -webkit-flex: 8 0 0; 
+  flex: 8 0 0;
+}
+
+.gui-loop-manipulator {
+  background-color: purple;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0;
+}
+
+.gui-button-wrapper {
+/*  background-color: black;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; */
+  height: 80px;
+  width: 100%;
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: row; /* Safari */
+  flex-direction:         row;
+  -webkit-flex-wrap:      nowrap; /* Safari */
+  webkit-flex-wrap:       nowrap;
+  -webkit-justify-content: space-between; /* Safari */
+  justify-content:         space-between;
+}
+
+.gui-operations {
+  background-color: pink;
+  -webkit-flex: 5 0 0; 
+  flex: 5 0 0;
+}
+
+input[type=button]:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
+}
+
+button:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
+}
+
+#trash{
+  background-color: grey;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0;
+}
+
+#loopOutput {
+  width: 100%;
+}
+
+#btn-loopDown {
+  width: 100%;
+}
+
+#btn-loopUp {
+  width: 100%;
+}
+
+/*.right-wrapper {
+  background-color: yellow;
+  -webkit-flex: 1 0 0; 
+  flex: 1 0 0; 
+}*/
+
+label {
+    font-weight: normal !important;
+}

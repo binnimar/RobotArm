@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Robotic Arm Game</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <script src="../static/js/simulation.js"></script>
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <link href="../static/css/GUI.css" rel="stylesheet">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/addOperations.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script>
+        $(function() {
+            $( ".sortable" ).sortable();
+            $( ".sortable" ).disableSelection();
+            $( "#subsortable" ).sortable();
+            $( "#subsortable" ).disableSelection();
+        });
+    </script>
+    <script>
+    function placeOperation(operation, container) {
+        var item = document.createElement('li');
+        item.id = operation;
+        item.className = 'ui-state-default';
+        var newContent = document.createTextNode(operation); 
+        item.appendChild(newContent);
+
+        if(container == "main") {
+            document.getElementById('mainsortable').appendChild(item)
+        }else if(container == "f1") {
+            document.getElementById('function1-sortable').appendChild(item)
+        }else if(container == "f2") {
+            document.getElementById('function2-sortable').appendChild(item)
+        }else if(container == "loop") {
+            document.getElementById('loop-sortable').appendChild(item)
+        }
+    }
+    </script>
+    <script>
+        var loadSolution = ['{{ data[0] }}'];
+        console.log("Should I load the solution? ", loadSolution);
+        
+        //Check whether a solution should be loaded
+        if(loadSolution == 0) {
+            var levelID = ['{{ data[1] }}'];
+            var gripperInit = ['{{ data[2] }}'];
+            var blocksInit = ['{{ data[3] }}'];
+            var blocksEnd = ['{{ data[4] }}'];
+            var perfectScore =  ['{{ data[5] }}'];
+            var goodScore =  ['{{ data[6] }}'];
+            var yourScore = ['{{ data[7] }}'];
+            var levelNumber = 2;
+
+            console.log("Loading data: ", levelID, " ", gripperInit, " ", blocksInit, " ", blocksEnd, " ", perfectScore, " ", goodScore, " ", yourScore);
+        } else {
+            var solutionID = ['{{ data[1] }}'];
+            var operationList = ['{{ data[2] }}'];
+            var blocksEnd = ['{{ data[3] }}'];
+            var levelID = ['{{ data[4] }}'];
+            var gripperInit = ['{{ data[6] }}'];
+            var blocksInit = ['{{ data[7] }}'];
+            var blocksEnd = ['{{ data[8] }}'];
+            var perfectScore =  ['{{ data[9] }}'];
+            var goodScore =  ['{{ data[10] }}'];
+            var yourScore = ['{{ data[11] }}'];
+            var levelNumber = 2;
+
+            // console.log("Loading data: ", solutionID, " ", operationList, " ", blocksEnd, " ", levelID, " ", gripperInit, " ", blocksInit, " ", blocksEnd, " ", perfectScore, " ", goodScore, " ", yourScore);
+            // console.log("KAKAKAKA: ", operationList);
+
+            var databaseEntry = operationList[0];
+            var databaseEntryArray = databaseEntry.split(';');
+            var operations = databaseEntryArray[0];
+            var function1 = databaseEntryArray[1];
+            var function2 = databaseEntryArray[2];
+            var loop = databaseEntryArray[3];
+
+            var operationArray = operations.split(',');
+            var function1Array = function1.split(',');
+            var function2Array = function2.split(',');
+            var loopArray = loop.split(',');
+
+            console.log("These are the operations: ", operationArray);
+            console.log("These are the function1: ", function1Array);
+            console.log("These are the function2: ", function2Array);
+            console.log("These are the loop: ", loopArray);
+
+            window.onload = function(){
+                for(var i=0; i<operationArray.length; i++) {
+                    placeOperation(operationArray[i], "main");
+                }
+
+                for(var i=0; i<function1Array.length; i++) {
+                    placeOperation(function1Array[i], "f1");
+                }
+
+                for(var i=0; i<function2Array.length; i++) {
+                    placeOperation(function2Array[i], "f2");
+                }
+
+                for(var i=0; i<loopArray.length-1; i++) {
+                    placeOperation(loopArray[i], "loop");
+                }
+
+                document.getElementById("loopOutput").value = parseInt(loopArray[loopArray.length-1]);
+            }
+
+
+        }
+    </script>
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="showSolutions">My Solutions</a></li>
+                    <li role="presentation" class="active"><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Robotic Arm Game</h3>
+        </div>
+
+        
+        <div class="gui-grid-container">
+            <div id="test" class="left-wrapper">
+                <div class="simulatior">
+                    <canvas id="simCanvas" width="401" height="201"></canvas>
+                    <!-- <script>init(getOperationList());</script> -->
+                </div>
+            </div>
+
+            <div class="right-wrapper">
+                <div class="gui-operations-grid" id ="gui-operations-grid">
+                    <ul id="mainsortable" class="sortable">
+
+                    </ul>
+                </div>
+            
+                <script>init(gripperInit, blocksInit, blocksEnd);</script>    
+                
+                <div class="gui-function1">
+                    <ul id="function1-sortable" class="sortable">
+
+                    </ul>
+                </div>
+                <div class="gui-function2">
+                    <ul id="function2-sortable" class="sortable">
+
+                    </ul>
+                </div>
+                <div class="gui-loop-container">
+                    <div class="gui-loop">
+                        <ul id="loop-sortable" class="sortable">
+
+                        </ul>
+                    </div>
+                    <div class ="gui-loop-manipulator">
+                        <button id="btn-loopUp" type="button">+</button>
+                        <input type="text" name="loopOutput" id="loopOutput" value="1"/>
+                        <script>document.getElementById("loopOutput").value = numberOfLoops;</script>
+                        <button id="btn-loopDown" type="button">-</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="gui-button-wrapper">
+                <div class="gui-operations">
+                    <div id="first-operation-row">
+                        <input id="btn-up" type="button" value="up" />
+                        <input id="btn-down" type="button" value="down" />
+                        <input id="btn-left" type="button" value="left" />
+                        <input id="btn-right" type="button" value="right" />
+                        <input id="btn-grab" type="button" value="grab" />
+                        <input id="btn-release" type="button" value="release" />
+                        <input id="btn-function1" type="button" value="function1" />
+                        <input id="btn-function2" type="button" value="function2" />
+                        <input id="btn-loop" type="button" value="loop" />
+                        <!-- <input id="btn-endloop" type="button" value="endloop" /> -->
+                    </div>
+                    <div id="second-operation-row">
+                        <form class="form-solution" action="/addSolution" method="post">
+                        <input type="hidden" name="userSolution" id="userSolution" value="" />
+                        <input type="hidden" name="userScore" id="userScore" value="" />
+                        <input type="hidden" name="solutionLevelID" id="solutionLevelID" value="1" />
+                        <script>document.getElementById("solutionLevelID").value = levelID;</script>
+                        <input id="btn-simulate" type="button" value="simulate" onclick="execute(getOperationList());">
+                        <input id="btn-clear" type="button" value="clear" />
+                        <!-- <input type="hidden" name="correctSolution" id="correctSolution" value="" />
+                        <script>document.getElementById("correctSolution").value = blocksEnd;console.log(blocksEnd);</script> -->
+                        <input type="hidden" name="finalBlockPositions" id="finalBlockPositions" value="" />
+                        <button id="btn-save" type="submit" value="save" onclick="checkFinalPositions(blocksEnd);">save&reset</button>
+                        <!-- Clicking simulate and save should add the blocks end state to the database -->
+                        </form>
+                    </div>
+                </div>
+                <div id="trash">
+                    DELETE
+                </div>
+            </div>
+
+            <br/>
+            <a href="showTutorial3">Go to Tutorial!</a></div>
+            <div class="level-container">
+                <form class="form-level" action="/loadLevel" method="post">
+                <button id="btn-levelDown" type="button"><</button>
+                <input type="text" name="output" id="output" value="1"/>
+                <script>document.getElementById("output").value = levelID;</script> 
+                <button id="btn-levelUp" type="button">></button>
+                <input type="hidden" name="levelID" id="levelID" value="" />
+                <button id="btn-loadLevel" type="submit">Go!</button>
+                </form>
+            </div>
+
+
+        	PERFECT SCORE
+        	<label for="perfScore" id="perfectScoreLbl"></label><br />
+            <script>document.getElementById('perfectScoreLbl').innerHTML = perfectScore;</script>
+
+        	GOOD SCORE
+        	<label for="goodScore" id="goodScoreLbl"></label><br />
+            <script>document.getElementById('goodScoreLbl').innerHTML = goodScore;</script>
+
+        	YOUR SCORE
+        	<label for="yourScore" id="yourScoreLbl"></label>/3<br />
+            <script>document.getElementById('yourScoreLbl').innerHTML = yourScore;</script>
+        </div>
+    </div>
+</body>
+ 
+</html>

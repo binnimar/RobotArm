@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Robotic Arm Game</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <script src="../static/js/simulation.js"></script>
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <link href="../static/css/GUI.css" rel="stylesheet">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+    <script>
+    $(function(){
+        $.ajax({
+            url : '/loadSolutions',
+            type : 'GET',
+            success: function(res){
+                console.log(res);
+                var solutionObj = JSON.parse(res);
+                $('#ulist').empty();
+                $('#listTemplate').tmpl(solutionObj).appendTo('#ulist');
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    });
+
+    function loadLevel(id){
+        console.log(id);
+    }
+
+    </script>
+
+    <style>
+    .trash {
+        color: rgb(209, 91, 71);
+    }
+    .panel-body .checkbox {
+        display: inline-block;
+        margin: 0px;
+    }
+    .list-group {
+        margin-bottom: 0px;
+    }
+    .operation-list {
+        display:block;
+        overflow:auto;
+        font-size: 8px;
+    }
+    </style>
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="showSolutions">My Solutions</a></li>
+                    <li role="presentation" class="active"><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Robotic Arm Game</h3>
+        </div>
+
+        <div class="my-solutions">
+
+            <script id="listTemplate" type="text/x-jQuery-tmpl">
+                <li class="list-group-item">
+                    <div class="checkbox">
+                        Level: ${level_id}
+                        <div class="operation-list">
+                            Operations: ${operation_list}
+                        </div>
+                    </div>
+                    <div class="pull-right action-buttons">
+                        <form class="form-solution" action="/loadSolution" method="post">
+                        <input type="hidden" name="solutionID" id="solutionID" value="${id}" />
+                        <input type="hidden" name="levelID" id="levelID" value="${level_id}" />
+                        <button id="btn-loadSolution" type="submit"><span class="glyphicon glyphicon-play"></span></button>
+                        </form>
+                    </div>
+                </li>
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+             
+                    <div class="panel-body">
+             
+                        <ul id="ulist" class="list-group">
+ 
+                        </ul>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+ 
+</html>
